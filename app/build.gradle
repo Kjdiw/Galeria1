@@ -3,11 +3,11 @@ plugins {
 }
 
 android {
-    namespace 'nascimento.santos.matheus.galeria1'
+    namespace 'nascimento.santos.matheus.lista'
     compileSdk 33
 
     defaultConfig {
-        applicationId "nascimento.santos.matheus.galeria1"
+        applicationId "nascimento.santos.matheus.lista"
         minSdk 24
         targetSdk 33
         versionCode 1

@@ -4,21 +4,21 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.example.lista.activity.NewItemActivity">
+    tools:context=".activity.activity.activity.activity.activity.NewItemActivity">
 
     <ImageView
         android:id="@+id/imvPhotoPreview"
         android:layout_width="234dp"
         android:layout_height="234dp"
         android:layout_marginStart="16dp"
-        app:layout_constraintBottom_toTopOf="@+id/imbCl"
+        app:layout_constraintBottom_toTopOf="@+id/imbCI"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.0"
         tools:srcCompat="@tools:sample/avatars" />
 
     <ImageButton
-        android:id="@+id/imbCl"
+        android:id="@+id/imbCI"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:layout_constraintBottom_toTopOf="@+id/btnAddItem"
