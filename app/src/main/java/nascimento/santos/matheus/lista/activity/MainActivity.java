@@ -53,16 +53,17 @@ public class MainActivity extends AppCompatActivity {
                 startActivityForResult(i, NEW_ITEM_REQUEST);//realiza a intent da NewItemActivity
             }
         });
-        RecyclerView rvItens = findViewById(R.id.rvItens);
+
+        RecyclerView rvItens = findViewById(R.id.rvItens);//pega a lista
 
         myAdapter = new MyAdapter(this, itens);
-        rvItens.setAdapter(myAdapter);
+        rvItens.setAdapter(myAdapter);//seta o adaptador na lista para que ela saiba como adicionar itens
 
         rvItens.setHasFixedSize(true);
 
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(this);
-        rvItens.setLayoutManager(layoutManager);
+        rvItens.setLayoutManager(layoutManager);//seta a forma a lista vai estar disposta
         DividerItemDecoration dividerItemDecoration = new DividerItemDecoration(rvItens.getContext(), DividerItemDecoration.VERTICAL);
-        rvItens.addItemDecoration(dividerItemDecoration);
+        rvItens.addItemDecoration(dividerItemDecoration);//separa os itens
     }
 }

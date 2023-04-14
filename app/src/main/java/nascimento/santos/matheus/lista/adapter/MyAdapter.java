@@ -22,24 +22,26 @@ public class MyAdapter extends RecyclerView.Adapter {
 
     public MyAdapter(MainActivity mainActivity, List<MyItem> itens) {
         this.mainActivity = mainActivity;
-        this.itens = itens;
+        this.itens = itens;//construtor do myadapter
     }
     @NonNull
     @Override
-
     public int getItemCount() {
         return itens.size();
-    }
+    }//manda o tamanho da lista para o recycleview
+
+    @Override
     public RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         LayoutInflater inflater = LayoutInflater.from(mainActivity);
         View v = inflater.inflate(R.layout.item_list, parent, false);
         return new MyViewHolder(v);
-    }
+    }//cria o item com os elementos
+
+    @Override
     public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
 
-        MyItem myItem = itens.get(position);
-
-        View v = holder.itemView;
+        MyItem myItem = itens.get(position);//pega o elemento na posição
+        View v = holder.itemView;//define uma variável como o elemento construído mas sem itens
 
         ImageView imvfoto = v.findViewById(R.id.imvfoto);
         imvfoto.setImageURI(myItem.photo);
@@ -48,6 +50,6 @@ public class MyAdapter extends RecyclerView.Adapter {
         tvTitle.setText(myItem.title);
 
         TextView tvdesc = v.findViewById(R.id.tvdesc);
-        tvdesc.setText(myItem.description);
+        tvdesc.setText(myItem.description);//coloca os elementos
     }
 }

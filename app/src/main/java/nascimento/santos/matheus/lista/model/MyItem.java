@@ -6,4 +6,4 @@ public class MyItem {
     public Uri photo;
     public String title;
     public String description;
-}
+}//guarda as informações dados no NewItemActivity
