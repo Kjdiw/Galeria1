@@ -44,7 +44,7 @@ public class MyAdapter extends RecyclerView.Adapter {
         View v = holder.itemView;//define uma variável como o elemento construído mas sem itens
 
         ImageView imvfoto = v.findViewById(R.id.imvfoto);
-        imvfoto.setImageURI(myItem.photo);
+        imvfoto.setImageBitmap(myItem.photo);
 
         TextView tvTitle = v.findViewById(R.id.tvTitle);
         tvTitle.setText(myItem.title);

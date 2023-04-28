@@ -2,6 +2,7 @@ package nascimento.santos.matheus.lista.activity;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.lifecycle.ViewModelProvider;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -15,15 +16,23 @@ import android.widget.ImageView;
 import android.widget.Toast;
 
 import nascimento.santos.matheus.lista.R;
+import nascimento.santos.matheus.lista.model.NewItemActivityViewModel;
 
 public class NewItemActivity extends AppCompatActivity {
 
     static int PHOTO_PICKER_REQUEST = 1;
-    Uri photoSelected = null;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_new_item);
+
+        NewItemActivityViewModel vm = new ViewModelProvider(this).get(NewItemActivityViewModel.class);//pega o view model do new item activity
+
+        Uri selectPhotoLocation = vm.getSelectPhotoLocation();//pega o uri e verifica se é nulo
+        if(selectPhotoLocation!=null) {
+            ImageView imvPhotoPreview = findViewById(R.id.imvPhotoPreview);
+            imvPhotoPreview.setImageURI(selectPhotoLocation);
+        }
 
         ImageButton imgCI = findViewById(R.id.imbCI);
         imgCI.setOnClickListener(new View.OnClickListener() {
@@ -39,6 +48,9 @@ public class NewItemActivity extends AppCompatActivity {
         btnAddItem.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
+                Uri photoSelected = vm.getSelectPhotoLocation();
+
                 if (photoSelected == null) {
                     Toast.makeText(NewItemActivity.this, "É necessário selecionar uma imagem!", Toast.LENGTH_SHORT).show();
                     return;
@@ -62,17 +74,25 @@ public class NewItemActivity extends AppCompatActivity {
                 setResult(Activity.RESULT_OK, i);//guarda os resultados
                 finish();//termina a tela e manda os resultados
             }
-        });
+        }
+        );
     }
 
+    @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {//recebe a intent de ir para outra tela
         super.onActivityResult(requestCode, resultCode, data);
         if(requestCode == PHOTO_PICKER_REQUEST) {
-            if(resultCode == Activity.RESULT_OK) {//verifica se é o seletor de fotos que chamou
-                photoSelected = data.getData();//pega uri
-                ImageView imvfotoPreview = findViewById(R.id.imvPhotoPreview);
-                imvfotoPreview.setImageURI(photoSelected);//bota a imagem com a do URI
+            if (resultCode == Activity.RESULT_OK) {//verifica se é o seletor de fotos que chamou
+                Uri photoSelected = data.getData();//pega uri
+                ImageView imvPhotoPreview = findViewById(R.id.imvPhotoPreview);
+
+                imvPhotoPreview.setImageURI(photoSelected);//bota a imagem com a do URI
+
+                NewItemActivityViewModel vm = new ViewModelProvider(this).get(NewItemActivityViewModel.class);//pega viewmodel
+                vm.setSelectPhotoLocation(photoSelected);//guarda no view model o uri
             }
+
+
         }
     }
 }
